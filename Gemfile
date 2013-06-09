@@ -5,7 +5,6 @@ end
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'rack',  '~> 1.1.0'
 gem 'rake', '~> 0.9.2.2'
 
 # Bundle edge Rails instead:
