@@ -43,8 +43,9 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
-
+# gem 'unicorn'
+gem 'thin'
+gem 'therubyracer'
 # Deploy with Capistrano
 # gem 'capistrano'
 
