@@ -1,0 +1,89 @@
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+	
+	$(function() {
+		$('#tab a').bind('click', function(event){
+
+			event.preventDefault();
+
+			var $sel = $(this),
+				href = $(this).prop('href');
+			
+			$sel.parents('ul').find('.active').removeClass('active');
+			$sel.parent('li').addClass('active');
+
+			$('#main').html('Loading...');
+
+			$.ajax({
+			  url: href,
+			  cache: false,
+			  dataType: 'script'
+			});
+
+		});
+	})
+</script>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<h1>iChovatel - seznam chovatelských stanic v ČR</h1>
+	</div>
+
+	<ul class="nav nav-tabs" id="tab">
+		<li class="active"><%= link_to "Všechny kategorie", home_path %></li>
+	<% @categories.each do |category| %>
+	  <li><%= link_to category.name, category_path( category ) %></li>
+	<% end %>
+	</ul>
+</div>
+
+<!-- begin #main -->
+<div class="container" id="main">
+	<div class="row">
+	<% 
+		size = 4
+		i = 0 
+	%>
+	<% @posts.each do |post| %>
+	<!-- Post.id <%= post.id %> -->
+	<article class="span<%= size %> station cat-<%= post.category.id %>">
+		<span class="sign"><%= post.category.name %></span>
+		
+		<small class="muted"><%= post.title %></small>
+		<h2><%= post.name %></h2>
+		
+		<p><% if (post.content != nil) then %><%= raw( post.content.gsub("@query", "<strong>@query</strong>") ) %><% else %>Empty<% end %></p>
+    	<span class="label label-important"><%= link_to post.category.name, category_path( post.category ) %></span>
+    	<aside>
+    		<% post.tags.each do |tag| %>
+            	<span class="badge"><%= tag.name %></span>
+        	<% end %>
+        <hr>
+	      <% if ( post.comments.count == 0 || post.comments.count > 4)
+	          lang_amount = "komentářů"
+	        elsif ( post.comments.count == 1 )
+	          lang_amount = "komentář"
+	        else
+	          lang_amount = "komentáře" 
+	        end %>
+	      <%= link_to sprintf("%g %s", post.comments.count, lang_amount), post %>
+      	</aside>
+        <%= link_to 'Zobrazit', post, { :class=>"btn btn-mini btn-primary pull-right" } %>
+  	</article>
+  	<% 
+  		i += 1
+  		if i % (12/size) == 0 
+  			%> </div><div class="row"> <%
+  		end
+  	%>
+	<% end %>
+	</div>
+	Celkem stanic: <%=@posts.count%>
+	<br />
+
+	<%=link_to "Chovatelské stanice - admin", posts_path, { :class=>"btn btn-large" } %>
+</div>
+<!-- end #main -->
+

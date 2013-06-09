@@ -1,0 +1,23 @@
+<h1>Seznam kategorií</h1>
+
+<table border="1px" bordercolor="#ededed">
+  <tr>
+    <th>Název</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= link_to 'Zobrazit', category %></td>
+    <td><%= link_to 'Upravit', edit_category_path(category) %></td>
+    <td><%= link_to 'Smazat', category, method: :delete, data: { confirm: 'Opravdu smazat?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'Zpět na správu stanic', posts_path %>
+<%= link_to 'Nová kategorie', new_category_path %>

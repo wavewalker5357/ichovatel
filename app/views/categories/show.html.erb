@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Název:</b>
+  <%= @category.name %>
+</p>
+
+<table class="table table-striped">
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= raw( post.content ) %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

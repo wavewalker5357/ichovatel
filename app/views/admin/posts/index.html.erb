@@ -1,0 +1,40 @@
+<h1>šechny stanice</h1>
+
+
+    <form action="&object_url(Post)" method="GET">
+      <label for="query">Search Posts</label>
+      <input type="text" name="query" value="#{:q}" />
+      <submit label="Search" />
+    </form>
+ 
+
+<table border="1px" bordercolor="#ededed">
+  <tr>
+    <th>Stanice</th>
+    <th>Adresa</th>
+    <th>Text</th>    
+    <th>Kategorie</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= post.title %></td>
+    <td><%= post.content %></td>
+    <td>  <%= post.category.name %></td>
+    <td><%= link_to 'Zobrazit', post %></td>
+    <td><%= link_to 'Upravit', edit_post_path(post) %></td>
+    <td><%= link_to 'Smazat', post, method: :delete, data: { confirm: 'Opravdu smazat?' } %></td>
+  </tr>
+<% end %>
+</table>
+Stanic: <%=@posts.count%>
+<br />
+
+<%= link_to "Domů", home_path %>
+<%= link_to 'Nová stanice', new_post_path %>
+<%= link_to 'Správa kategorií', admin_categories_path %>
+%>

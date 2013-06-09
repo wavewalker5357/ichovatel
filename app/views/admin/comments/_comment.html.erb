@@ -1,0 +1,15 @@
+<p>
+  <b>Uživatel:</b>
+  <%= comment.commenter %>
+</p>
+ 
+<p>
+  <b>Komentář:</b>
+  <%= comment.body %>
+</p>
+
+<p>
+	<%= link_to 'Smazat', [comment.post, comment],
+               :confirm => 'Opravdu smazat?',
+               :method => :delete %>
+</p>

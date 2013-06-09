@@ -1,0 +1,32 @@
+<h1>Všechny stanice</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Stanice</th>
+    <th>Adresa</th>
+    <th>Text</th>    
+    <th>Kategorie</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= post.title %></td>
+    <td><% if (post.content != nil) then %><%= raw( post.content.gsub(@query, sprintf('<span class="label label-info">%s</span>', @query) ) ) %><% else %>Empty<% end %></td>
+    <td><%= link_to post.category.name, category_path( post.category ) %></td>
+
+    <td><%= link_to 'Zobrazit', post, { :class=>"btn btn-mini btn-primary" } %></td>
+    <td><%= link_to 'Upravit', edit_post_path(post), { :class=>"btn btn-mini btn-warning" } %></td>
+    <td><%= link_to 'Smazat', post, :class=>"btn btn-mini btn-danger", method: :delete, data: { confirm: 'Opravdu smazat?' } %></td>
+  </tr>
+<% end %>
+</table>
+Stanic: <%=@posts.count%>
+<br />
+
+<%= link_to "Domů", home_path %>
+<%= link_to 'Nová stanice', new_post_path %>
+<%= link_to 'Správa kategorií', categories_path %>

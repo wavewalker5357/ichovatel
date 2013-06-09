@@ -1,0 +1,25 @@
+
+	<article class="span4 station cat-<%= post.category.id %>">
+		<span class="sign"><%= post.category.name %></span>
+		
+		<small class="muted"><%= post.title %></small>
+		<h2><%= post.name %></h2>
+		
+		<p><% if (post.content != nil) then %><%= raw( post.content.gsub("@query", "@query") ) %><% else %>Empty<% end %></p>
+    	<span class="label label-important"><%= link_to post.category.name, category_path( post.category ) %></span>
+    	<aside>
+    		<% post.tags.each do |tag| %>
+            	<span class="badge"><%= tag.name %></span>
+        	<% end %>
+        <hr>
+	      <% if ( post.comments.count == 0 || post.comments.count > 4)
+	          lang_amount = "komentářů"
+	        elsif ( post.comments.count == 1 )
+	          lang_amount = "komentář"
+	        else
+	          lang_amount = "komentáře" 
+	        end %>
+	      <%= link_to sprintf("%g %s", post.comments.count, lang_amount), post %>
+      	</aside>
+        <%= link_to 'Zobrazit', post, { :class=>"btn btn-mini btn-primary pull-right" } %>
+  	</article>
