@@ -18,7 +18,7 @@ group :development, :test do
 end
 
 gem 'ancestry'
-gem 'acts_as_indexed', :git => 'https://github.com/dougal/acts_as_indexed.git', :branch => 'development'
+gem 'acts_as_indexed', :git => 'https://github.com/dougal/acts_as_indexed.git',# :branch => 'development'
 gem 'database_cleaner'
 gem 'tinymce-rails'
 # Gems used only for assets and not required
