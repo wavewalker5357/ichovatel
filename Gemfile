@@ -14,7 +14,7 @@ group :production, :staging do
 end
 
 group :development, :test do
-  gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
+  gem "sqlite3", "~> 1.3.0", :require => "sqlite3"
 end
 
 gem 'ancestry'
@@ -44,8 +44,8 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-gem 'thin'
-gem 'therubyracer'
+# gem 'thin'
+# gem 'therubyracer'
 # Deploy with Capistrano
 # gem 'capistrano'
 
