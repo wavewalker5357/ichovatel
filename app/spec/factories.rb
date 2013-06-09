@@ -15,12 +15,10 @@ FactoryGirl.define do
      end 
 end 
   
-FactoryGirl.sequence :category_name do |n| 
-  "#{n}" 
-end 
-  
 FactoryGirl.define do 
+     sequence (:category_name) { |n| "#{n}" } 
+ 
      factory :category do |c| 
-       c.name  FactoryGirl.next :category_name 
+       c.name  { Factory.next(:category_name) } 
      end 
 end
