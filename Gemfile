@@ -22,6 +22,7 @@ gem 'ancestry'
 gem 'acts_as_indexed', :git => 'https://github.com/dougal/acts_as_indexed.git'
 gem 'tinymce-rails'
 gem 'factory_girl'
+gem 'rspec'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
